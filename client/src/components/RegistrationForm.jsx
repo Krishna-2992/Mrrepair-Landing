@@ -9,6 +9,7 @@ import {
     Loader2
 } from 'lucide-react';
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 // Translations
 const translations = {
@@ -90,6 +91,8 @@ export default function RegistrationForm() {
         phone: '',
         email: ''
     });
+    const navigate = useNavigate();
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -163,7 +166,6 @@ export default function RegistrationForm() {
         try {
             const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/partners`, formData);
             if (response.status === 201) {
-                alert('Partner created successfully');
                 // Reset form after successful submission
                 setFormData({
                     name: '',
@@ -174,10 +176,11 @@ export default function RegistrationForm() {
                     otherProfession: '',
                     workExperience: ''
                 });
+                navigate('/success')
             }
         } catch (error) {
             console.error('Error creating partner:', error);
-            alert('Failed to create partner');
+            navigate('/fail')
         } finally {
             // Set loading state back to false
             setIsLoading(false);

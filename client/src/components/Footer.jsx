@@ -14,7 +14,7 @@ export default function Footer() {
         <footer className="bg-gray-900 text-white py-12">
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
                 <div className="flex flex-col space-y-4">
-                    <h3 className="text-xl font-bold">ServiceConnect</h3>
+                    <h3 className="text-xl font-bold">Mr Repairr</h3>
                     <p className="text-gray-400">
                         Connecting you with trusted local service providers
                     </p>
@@ -24,18 +24,18 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="flex justify-center space-x-4">
-                    <div className="animate-bounce p-3 bg-blue-600 rounded-full">
+                    <div className="animate-bounce p-3 bg-blue-600 rounded-full h-12">
                         <Wrench className="text-white" />
                     </div>
-                    <div className="animate-bounce p-3 bg-yellow-500 rounded-full">
+                    <div className="animate-bounce p-3 bg-yellow-500 rounded-full h-12">
                         <Plug className="text-white" />
                     </div>
-                    <div className="animate-bounce p-3 bg-red-500 rounded-full">
+                    <div className="animate-bounce p-3 bg-red-500 rounded-full h-12">
                         <Hammer className="text-white" />
                     </div>
                 </div>
                 <div className="text-right">
-                    <p>&copy; 2024 ServiceConnect. All Rights Reserved.</p>
+                    <p>&copy; 2024 Mr Repairr. All Rights Reserved.</p>
                 </div>
             </div>
         </footer>

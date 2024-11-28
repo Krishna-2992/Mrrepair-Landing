@@ -4,10 +4,6 @@ import {
     Wrench,
     Hammer,
     Plug,
-    Phone,
-    Mail,
-    User,
-    Building
 } from 'lucide-react';
 export default function Header() {
     return (

@@ -1,31 +1,20 @@
 import React, { useState } from 'react';
-import {
-  MapPin,
-  Wrench,
-  Hammer,
-  Plug,
-  Phone,
-  Mail,
-  User,
-  Building
-} from 'lucide-react';
-import RegistrationForm from './components/RegistrationForm';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
-import Header from './components/Header';
+import {Routes, Route} from 'react-router-dom'
+
+import Landing from './pages/Landing';
+import Success from './pages/Success';
+import Fail from './pages/Fail';
+
 
 
 function App() {
-
-
-
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      <Header />
-      <RegistrationForm />
-      <Footer />
+    <div>
+        <Routes>
+          <Route path='/' element={<Landing/>}></Route>
+          <Route path='/success' element={<Success/>}></Route>
+          <Route path='/fail' element={<Fail/>}></Route>
+        </Routes>
     </div>
   );
 }

@@ -39,7 +39,7 @@ const translations = {
         otherProfessionPlaceholder: 'Please specify your profession',
         validations: {
             phoneError: 'Please enter a valid 10-digit phone number',
-            emailError: 'Please enter a valid email address'
+            emailError: 'Please enter a valid email address(example@gmail.com)'
         }
     },
     hindi: {
@@ -99,6 +99,12 @@ export default function RegistrationForm() {
         if (name === 'phone') {
             // Remove any non-digit characters
             processedValue = value.replace(/\D/g, '').slice(0, 10);
+        }
+
+        // Special handling for work experience
+        if (name === 'workExperience') {
+            // Remove any non-digit characters
+            processedValue = value.replace(/\D/g, '').slice(0, 2);
         }
 
         setFormData(prev => ({

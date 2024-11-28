@@ -17,12 +17,12 @@ const port = process.env.PORT
 
 mongoose
     .connect(mongo_URL)
-    .then(() => {
-        console.log("Connected to MongoDB Atlas");
-    })
-    .catch((error) => {
-        console.error("Error connecting to MongoDB Atlas:", error);
-    });
+    // .then(() => {
+    //     console.log("Connected to MongoDB Atlas");
+    // })
+    // .catch((error) => {
+    //     console.error("Error connecting to MongoDB Atlas:", error);
+    // });
 
 app.use('/', partnerRoutes)
 

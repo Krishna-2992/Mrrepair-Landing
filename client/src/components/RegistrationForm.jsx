@@ -161,8 +161,6 @@ export default function RegistrationForm() {
         // Set loading state to true
         setIsLoading(true);
 
-        console.log(`${import.meta.env.VITE_SERVER_URL}/partners`)
-
         try {
             const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/partners`, formData);
             if (response.status === 201) {

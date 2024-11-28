@@ -2,8 +2,6 @@ const { Partner } = require('../model/partner'); // Assuming the model is stored
 
 
 const createPartner = async (req, res) => {
-    console.log("inside partner controller");
-
     const { name, phone, email, address, profession, other, workExperience } = req.body;
     try {
         const contactNumber = phone;

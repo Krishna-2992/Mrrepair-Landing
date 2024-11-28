@@ -13,7 +13,7 @@ export default function Footer() {
     return (
         <footer className="bg-gray-900 text-white py-12">
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col space-y-4 ">
                     <h3 className="text-xl font-bold">Mr Repairr</h3>
                     <p className="text-gray-400">
                         Connecting you with trusted local service providers
@@ -34,7 +34,7 @@ export default function Footer() {
                         <Hammer className="text-white" />
                     </div>
                 </div>
-                <div className="text-right">
+                <div className="text-center">
                     <p>&copy; 2024 Mr Repairr. All Rights Reserved.</p>
                 </div>
             </div>

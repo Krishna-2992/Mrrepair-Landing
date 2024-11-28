@@ -6,7 +6,7 @@ import {
     User,
     Building,
     Briefcase,
-    Globe
+    Loader2
 } from 'lucide-react';
 import axios from "axios"
 
@@ -76,6 +76,7 @@ const translations = {
 
 export default function RegistrationForm() {
     const [language, setLanguage] = useState('english');
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -148,6 +149,9 @@ export default function RegistrationForm() {
             return;
         }
 
+        // Set loading state to true
+        setIsLoading(true);
+
         try {
             const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/partners`, formData);
             if (response.status === 201) {
@@ -166,6 +170,9 @@ export default function RegistrationForm() {
         } catch (error) {
             console.error('Error creating partner:', error);
             alert('Failed to create partner');
+        } finally {
+            // Set loading state back to false
+            setIsLoading(false);
         }
     };
 
@@ -315,9 +322,19 @@ export default function RegistrationForm() {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition duration-300"
+                        disabled={isLoading}
+                        className={`w-full p-3 rounded-lg transition duration-300 ${isLoading 
+                            ? 'bg-blue-400 cursor-not-allowed' 
+                            : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
                     >
-                        {t.registerButton}
+                        {isLoading ? (
+                            <div className="flex items-center justify-center">
+                                <Loader2 className="mr-2 animate-spin" />
+                                {t.registerButton}...
+                            </div>
+                        ) : (
+                            t.registerButton
+                        )}
                     </button>
                 </form>
             </div>

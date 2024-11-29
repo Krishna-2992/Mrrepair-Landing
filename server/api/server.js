@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 require('dotenv').config()
 
-const partnerRoutes = require('./routes/partnerRoutes')
+const partnerRoutes = require('../routes/partnerRoutes')
 
 const app = express()
 
@@ -27,7 +27,7 @@ mongoose
 app.use('/', partnerRoutes)
 
 app.get("/", (req, res) => {
-    res.send("working")
+    res.send("workinggg")
 })
 
 app.listen(port, () => {

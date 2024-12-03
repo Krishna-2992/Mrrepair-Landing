@@ -19,6 +19,8 @@ const translations = {
         phone: 'Phone Number',
         email: 'Email Address',
         address: 'Address',
+        city: 'City',
+        pincode: 'Pincode',
         profession: 'Select Profession',
         workExperience: 'Work Experience (Years)',
         registerButton: 'Register Now',
@@ -27,20 +29,29 @@ const translations = {
             electrician: 'Electrician',
             carpenter: 'Carpenter',
             painter: 'Painter',
-            mechanic: 'Mechanic',
-            gasRepairing: 'Gas Repairing',
-            acTechnician: 'AC Technician',
-            welder: 'Welder',
-            floorCleaner: 'Floor Cleaner',
-            invertorMechanic: 'Invertor Mechanic',
-            aataChakki: 'Aata Chakki',
-            electronicWeldingMachine: 'Electronic Welding Machine',
+            gas_repair: 'Gas Stove Repairing (LPG Gas Burner)',
+            ac_tech: 'AC / Cooler Technician',
+            microwave_tech: 'Microwave Oven / Electric Chimney Technician',
+            shutter_welder: 'Rolling Shutter Repair / IRON Welder',
+            water_dispenser_tech: 'RO Water / Water Cooler Dispenser Technician',
+            invertor_tech: 'Invertor / Battery Technician',
+            aata_chakki_repair: 'Aata Chakki Repair',
+            weighing_machine_tech: 'Electronic Weighing Machine Technician',
+            tv_tech: 'T.V. / LED Technician',
+            computer_tech: 'Laptop / Desktop Computer Technician',
+            printer_tech: 'Printer / Scanner Technician',
+            appliance_tech: 'Washing Machine / Fridge Technician',
+            geyser_tech: 'Water Geyser Technician',
+            mobile_tablet_repair: 'Mobile / Tablet Repair',
+            gadgets_repair: 'Smart Gadgets Repair',
+            cctv_tech: 'CCTV Camera Technician',
             other: 'Other'
         },
         otherProfessionPlaceholder: 'Please specify your profession',
         validations: {
             phoneError: 'Please enter a valid 10-digit phone number',
-            emailError: 'Please enter a valid email address(example@gmail.com)'
+            emailError: 'Please enter a valid email address(example@gmail.com)',
+            pincodeError: 'Please enter a valid 6-digit pincode'
         }
     },
     hindi: {
@@ -49,6 +60,8 @@ const translations = {
         phone: 'फोन नंबर',
         email: 'ईमेल पता',
         address: 'पता',
+        city: 'शहर',
+        pincode: 'पिनकोड',
         profession: 'पेशा चुनें',
         workExperience: 'कार्य अनुभव (वर्ष)',
         registerButton: 'अभी रजिस्टर करें',
@@ -57,20 +70,29 @@ const translations = {
             electrician: 'इलेक्ट्रीशियन',
             carpenter: 'बढ़ई',
             painter: 'रंगाई',
-            mechanic: 'मैकेनिक',
-            gasRepairing: 'गैस मरम्मत',
-            acTechnician: 'एसी तकनीशियन',
-            welder: 'वेल्डर',
-            floorCleaner: 'फर्श सफाई',
-            invertorMechanic: 'इन्वर्टर मैकेनिक',
-            aataChakki: 'आटा चक्की',
-            electronicWeldingMachine: 'इलेक्ट्रॉनिक वेल्डिंग मशीन',
+            gas_repair: 'गैस मरम्मत',
+            ac_tech: 'एसी तकनीशियन',
+            microwave_tech: 'माइक्रोवेव ओवन / इलेक्ट्रिक चिमनी तकनीशियन',
+            shutter_welder: 'रोलिंग शटर मरम्मत / आयरन वेल्डर',
+            water_dispenser_tech: 'आरओ पानी / वाटर कूलर डिस्पेंसर तकनीशियन',
+            invertor_tech: 'इन्वर्टर / बैटरी तकनीशियन',
+            aata_chakki_repair: 'आटा चक्की मरम्मत',
+            weighing_machine_tech: 'इलेक्ट्रॉनिक वजन मशीन तकनीशियन',
+            tv_tech: 'टी.वी. / एलईडी तकनीशियन',
+            computer_tech: 'लैपटॉप / डेस्कटॉप कंप्यूटर तकनीशियन',
+            printer_tech: 'प्रिंटर / स्कैनर तकनीशियन',
+            appliance_tech: 'वॉशिंग मशीन / फ्रिज तकनीशियन',
+            geyser_tech: 'वॉटर गीजर तकनीशियन',
+            mobile_tablet_repair: 'मोबाइल / टैबलेट मरम्मत',
+            gadgets_repair: 'स्मार्ट गैजेट मरम्मत',
+            cctv_tech: 'सीसीटीवी कैमरा तकनीशियन',
             other: 'अन्य'
         },
         otherProfessionPlaceholder: 'कृपया अपना पेशा बताएं',
         validations: {
             phoneError: 'कृपया एक मान्य 10 अंकों का फोन नंबर दर्ज करें',
-            emailError: 'कृपया एक मान्य ईमेल पता दर्ज करें'
+            emailError: 'कृपया एक मान्य ईमेल पता दर्ज करें',
+            pincodeError: 'कृपया एक मान्य 6 अंकीय पिनकोड दर्ज करें'
         }
     }
 };
@@ -83,16 +105,18 @@ export default function RegistrationForm() {
         phone: '',
         email: '',
         address: '',
+        city: '',
+        pincode: '',
         profession: '',
         otherProfession: '',
         workExperience: ''
     });
     const [validationErrors, setValidationErrors] = useState({
         phone: '',
-        email: ''
+        email: '',
+        pincode: ''
     });
     const navigate = useNavigate();
-
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -110,13 +134,19 @@ export default function RegistrationForm() {
             processedValue = value.replace(/\D/g, '').slice(0, 2);
         }
 
+        // Special handling for pincode
+        if (name === 'pincode') {
+            // Remove any non-digit characters
+            processedValue = value.replace(/\D/g, '').slice(0, 6);
+        }
+
         setFormData(prev => ({
             ...prev,
             [name]: processedValue
         }));
 
         // Clear validation errors when user starts typing
-        if (name === 'phone' || name === 'email') {
+        if (name === 'phone' || name === 'email' || name === 'pincode') {
             setValidationErrors(prev => ({
                 ...prev,
                 [name]: ''
@@ -142,6 +172,12 @@ export default function RegistrationForm() {
             errors.email = t.validations.emailError;
         }
 
+        // Pincode validation
+        const pincodeRegex = /^\d{6}$/;
+        if (!pincodeRegex.test(formData.pincode)) {
+            errors.pincode = t.validations.pincodeError;
+        }
+
         setValidationErrors(errors);
         return Object.keys(errors).length === 0;
     };
@@ -152,7 +188,7 @@ export default function RegistrationForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         // Validate form before submission
         if (!validateForm()) {
             return;
@@ -170,6 +206,8 @@ export default function RegistrationForm() {
                     phone: '',
                     email: '',
                     address: '',
+                    city: '',
+                    pincode: '',
                     profession: '',
                     otherProfession: '',
                     workExperience: ''
@@ -277,6 +315,30 @@ export default function RegistrationForm() {
                         />
                     </div>
                     <div className="flex items-center border rounded-lg">
+                        <MapPin className="ml-3 text-gray-500" />
+                        <input
+                            type="text"
+                            name="city"
+                            placeholder={t.city}
+                            value={formData.city}
+                            onChange={handleInputChange}
+                            required
+                            className="w-full p-3 rounded-lg focus:outline-none"
+                        />
+                    </div>
+                    <div className="flex items-center border rounded-lg">
+                        <MapPin className="ml-3 text-gray-500" />
+                        <input
+                            type="text"
+                            name="pincode"
+                            placeholder={t.pincode}
+                            value={formData.pincode}
+                            onChange={handleInputChange}
+                            required
+                            className="w-full p-3 rounded-lg focus:outline-none"
+                        />
+                    </div>
+                    <div className="flex items-center border rounded-lg">
                         <Building className="ml-3 text-gray-500" />
                         <select
                             name="profession"
@@ -290,14 +352,22 @@ export default function RegistrationForm() {
                             <option value="electrician">{t.professionOptions.electrician}</option>
                             <option value="carpenter">{t.professionOptions.carpenter}</option>
                             <option value="painter">{t.professionOptions.painter}</option>
-                            <option value="mechanic">{t.professionOptions.mechanic}</option>
-                            <option value="gas-repairing">{t.professionOptions.gasRepairing}</option>
-                            <option value="ac-technician">{t.professionOptions.acTechnician}</option>
-                            <option value="welder">{t.professionOptions.welder}</option>
-                            <option value="floor-cleaner">{t.professionOptions.floorCleaner}</option>
-                            <option value="invertor-mechanic">{t.professionOptions.invertorMechanic}</option>
-                            <option value="aata-chakki">{t.professionOptions.aataChakki}</option>
-                            <option value="electronic-welding-machine">{t.professionOptions.electronicWeldingMachine}</option>
+                            <option value="gas_repair">{t.professionOptions.gas_repair}</option>
+                            <option value="ac_tech">{t.professionOptions.ac_tech}</option>
+                            <option value="microwave_tech">{t.professionOptions.microwave_tech}</option>
+                            <option value="shutter_welder">{t.professionOptions.shutter_welder}</option>
+                            <option value="water_dispenser_tech">{t.professionOptions.water_dispenser_tech}</option>
+                            <option value="invertor_tech">{t.professionOptions.invertor_tech}</option>
+                            <option value="aata_chakki_repair">{t.professionOptions.aata_chakki_repair}</option>
+                            <option value="weighing_machine_tech">{t.professionOptions.weighing_machine_tech}</option>
+                            <option value="tv_tech">{t.professionOptions.tv_tech}</option>
+                            <option value="computer_tech">{t.professionOptions.computer_tech}</option>
+                            <option value="printer_tech">{t.professionOptions.printer_tech}</option>
+                            <option value="appliance_tech">{t.professionOptions.appliance_tech}</option>
+                            <option value="geyser_tech">{t.professionOptions.geyser_tech}</option>
+                            <option value="mobile_tablet_repair">{t.professionOptions.mobile_tablet_repair}</option>
+                            <option value="gadgets_repair">{t.professionOptions.gadgets_repair}</option>
+                            <option value="cctv_tech">{t.professionOptions.cctv_tech}</option>
                             <option value="other">{t.professionOptions.other}</option>
                         </select>
                     </div>
@@ -332,8 +402,8 @@ export default function RegistrationForm() {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className={`w-full p-3 rounded-lg transition duration-300 ${isLoading 
-                            ? 'bg-blue-400 cursor-not-allowed' 
+                        className={`w-full p-3 rounded-lg transition duration-300 ${isLoading
+                            ? 'bg-blue-400 cursor-not-allowed'
                             : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
                     >
                         {isLoading ? (
